@@ -72,7 +72,6 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
     private static final Log log = LogFactory.getLog(PingFederatKeyManagerClient.class);
     private PingFederateDCRClient pingFederateDCRClient;
     private IntrospectClient introspectionClient;
-    private String tokenEndpoint;
     private AuthClient authClient;
 
     @Override
@@ -330,7 +329,7 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
         String password = (String) configuration.getParameter(PingFederateConstants.PASSWORD);
         String clientId = (String) configuration.getParameter(PingFederateConstants.TOKEN_VALIDATION_CLIENT_ID);
         String clientSecret = (String) configuration.getParameter(PingFederateConstants.TOKEN_VALIDATION_CLIENT_SECRET);
-        tokenEndpoint = (String) configuration.getParameter(APIConstants.KeyManager.TOKEN_ENDPOINT);
+        String tokenEndpoint = (String) configuration.getParameter(APIConstants.KeyManager.TOKEN_ENDPOINT);
         if (StringUtils.isNotEmpty(clientRegistrationEndpoint) && StringUtils.isNotEmpty(username) &&
                 StringUtils.isNotEmpty(password)) {
             pingFederateDCRClient =

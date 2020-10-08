@@ -22,7 +22,7 @@ package org.wso2.pingfederate.client;
  */
 public class PingFederateConstants {
 
-    public static final String PING_FEDERATE_TYPE = "Ping-Federate";
+    public static final String PING_FEDERATE_TYPE = "PingFederate";
     public static final String DISPLAY_NAME = "PingFederate";
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
@@ -30,8 +30,7 @@ public class PingFederateConstants {
     public static final String TOKEN_VALIDATION_CLIENT_SECRET = "client_secret";
     public static final String BYPASS_APPROVAL_PAGES = "bypass_approval_pages";
     public static final String RESTRICT_RESPONSE_TYPES = "restrict_response_types";
-
-    PingFederateConstants() {
-
-    }
+    public static final String CONSUMER_KEY_CLAIM = "client_id_name";
+    public static final String DEFAULT_SUBJECT_CLAIM = "Username";
+    public static final String CLIENT_ID_CLAIM = "client_id";
 }

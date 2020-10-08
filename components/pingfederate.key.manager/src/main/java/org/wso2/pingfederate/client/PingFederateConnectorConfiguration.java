@@ -46,7 +46,7 @@ public class PingFederateConnectorConfiguration implements KeyManagerConnectorCo
     @Override
     public String getJWTValidator() {
 
-        return null;
+        return PingFederateJWTValidatorImpl.class.getName();
     }
 
     @Override
@@ -73,11 +73,11 @@ public class PingFederateConnectorConfiguration implements KeyManagerConnectorCo
     public List<ConfigurationDto> getApplicationConfigurations() {
 
         List<ConfigurationDto> configurationDtoList = new ArrayList<>();
-//        configurationDtoList
-//                .add(new ConfigurationDto(PingFederateConstants.BYPASS_APPROVAL_PAGES, "Bypass approval Pages",
-//                        "select", "Enable to skip authorization approval pages",
-//                        "false",
-//                        false, false, Arrays.asList("false", "true"), false));
+        configurationDtoList
+                .add(new ConfigurationDto(PingFederateConstants.BYPASS_APPROVAL_PAGES, "Bypass approval Pages",
+                        "select", "Enable to skip authorization approval pages",
+                        "false",
+                        false, false, Arrays.asList("false", "true"), false));
         configurationDtoList
                 .add(new ConfigurationDto(PingFederateConstants.RESTRICT_RESPONSE_TYPES, "Restricted Reponse Types",
                         "select", "Select Response Types Client can request",
@@ -98,5 +98,11 @@ public class PingFederateConnectorConfiguration implements KeyManagerConnectorCo
     public String getDisplayName() {
 
         return PingFederateConstants.DISPLAY_NAME;
+    }
+
+    @Override
+    public String getDefaultConsumerKeyClaim() {
+
+        return PingFederateConstants.CONSUMER_KEY_CLAIM;
     }
 }
