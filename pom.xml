@@ -25,7 +25,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.wso2.km.ext.pingfederate</groupId>
     <artifactId>pingfederate.auth.client</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -240,7 +240,7 @@
         <connection>scm:git:https://github.com/wso2-extensions/apim-km-pingfederate.git</connection>
         <url>https://github.com/wso2-extensions/apim-km-pingfederate.git</url>
         <developerConnection>scm:git:https://github.com/wso2-extensions/apim-km-pingfederate.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v1.0.0</tag>
     </scm>
     <properties>
         <carbon.apimgt.version>6.7.205</carbon.apimgt.version>
