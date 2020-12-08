@@ -199,7 +199,13 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
 
         if (oAuthAppRequest.getOAuthApplicationInfo() != null) {
             ClientInfo clientInfo = fromOauthAppRequestToClientInfo(oAuthAppRequest);
-            pingFederateDCRClient.updateApplication(toClientInfoList(clientInfo));
+            Response response = pingFederateDCRClient.updateApplication(toClientInfoList(clientInfo));
+            if (response.status() == HttpStatus.SC_OK) {
+                return fromClientInfoToOauthApplicationInfo(clientInfo);
+            } else {
+                throw new APIManagementException(
+                        "Error while updating application. Response status code:" + response.status());
+            }
         }
         return null;
     }

@@ -37,7 +37,7 @@ public interface PingFederateDCRClient {
 
     @RequestLine("PUT ")
     @Headers("Content-Type: application/json")
-    public ClientInfo updateApplication(ClientInfoList clientInfo);
+    public Response updateApplication(ClientInfoList clientInfo);
 
     @RequestLine("DELETE /{clientId}")
     @Headers("Content-Type: application/json")
