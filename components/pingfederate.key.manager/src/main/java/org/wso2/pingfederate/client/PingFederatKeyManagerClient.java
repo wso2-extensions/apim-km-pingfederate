@@ -77,7 +77,7 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
     @Override
     public OAuthApplicationInfo createApplication(OAuthAppRequest oAuthAppRequest) throws APIManagementException {
 
-        ClientInfo clientInfo = fromOauthAppRequestToClientInfo(oAuthAppRequest);
+        ClientInfo clientInfo = fromOauthAppRequestToClientInfo(oAuthAppRequest, false);
 
         Response response = pingFederateDCRClient.createApplication(toClientInfoList(clientInfo));
         if (response.status() == HttpStatus.SC_OK) {
@@ -129,7 +129,7 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
         return clientInfoList;
     }
 
-    private ClientInfo fromOauthAppRequestToClientInfo(OAuthAppRequest oAuthAppRequest) {
+    private ClientInfo fromOauthAppRequestToClientInfo(OAuthAppRequest oAuthAppRequest, boolean isUpdateFlow) {
 
         ClientInfo clientInfo = new ClientInfo();
         clientInfo.setClientAuthnType("SECRET");
@@ -179,7 +179,7 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
             clientInfo.setClientId((String) additionalProperties.get(APIConstants.JSON_CLIENT_SECRET));
         } else if (StringUtils.isNotEmpty(oAuthApplicationInfo.getClientSecret())) {
             clientInfo.setSecret(oAuthApplicationInfo.getClientSecret());
-        } else {
+        } else if (!isUpdateFlow) {
             clientInfo.setSecret(UUID.randomUUID().toString());
         }
         if (additionalProperties.containsKey(PingFederateConstants.BYPASS_APPROVAL_PAGES)) {
@@ -198,7 +198,7 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
     public OAuthApplicationInfo updateApplication(OAuthAppRequest oAuthAppRequest) throws APIManagementException {
 
         if (oAuthAppRequest.getOAuthApplicationInfo() != null) {
-            ClientInfo clientInfo = fromOauthAppRequestToClientInfo(oAuthAppRequest);
+            ClientInfo clientInfo = fromOauthAppRequestToClientInfo(oAuthAppRequest, true);
             Response response = pingFederateDCRClient.updateApplication(toClientInfoList(clientInfo));
             if (response.status() == HttpStatus.SC_OK) {
                 return fromClientInfoToOauthApplicationInfo(clientInfo);
@@ -292,6 +292,9 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
 
             long expiryTime = introspectInfo.getExpiry();
             tokenInfo.addParameter(APIConstants.JwtTokenConstants.EXPIRY_TIME, expiryTime);
+            long currentTime = System.currentTimeMillis();
+            tokenInfo.setValidityPeriod((expiryTime * 1000L) - currentTime);
+            tokenInfo.setIssuedTime(currentTime);
 
             if (StringUtils.isNotEmpty(introspectInfo.getScope())) {
                 tokenInfo.setScope(introspectInfo.getScope().split("\\s+"));
