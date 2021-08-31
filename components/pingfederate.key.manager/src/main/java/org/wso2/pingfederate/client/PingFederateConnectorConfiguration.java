@@ -54,18 +54,21 @@ public class PingFederateConnectorConfiguration implements KeyManagerConnectorCo
 
         List<ConfigurationDto> configurationDtoList = new ArrayList<>();
         configurationDtoList
-                .add(new ConfigurationDto(PingFederateConstants.USERNAME, "Username", "input", "Username of admin user",
-                        "",
-                        true, false, Collections.emptyList(), false));
+                .add(new ConfigurationDto(PingFederateConstants.USERNAME, "Username",
+                        "input", "Username of admin user", "", true,
+                        false, Collections.emptyList(), false));
         configurationDtoList
-                .add(new ConfigurationDto(PingFederateConstants.PASSWORD, "Password", "input",
-                        "Password of Admin user", "", true, true, Collections.emptyList(), false));
+                .add(new ConfigurationDto(PingFederateConstants.PASSWORD, "Password",
+                        "input", "Password of Admin user", "", true,
+                        true, Collections.emptyList(), false));
         configurationDtoList
-                .add(new ConfigurationDto(PingFederateConstants.TOKEN_VALIDATION_CLIENT_ID, "Client ID", "input",
-                        "Client Id for Token Validation", "", true, false, Collections.emptyList(), false));
+                .add(new ConfigurationDto(PingFederateConstants.TOKEN_VALIDATION_CLIENT_ID, "Client ID",
+                        "input", "Client Id for Token Validation", "", true,
+                        false, Collections.emptyList(), false));
         configurationDtoList
                 .add(new ConfigurationDto(PingFederateConstants.TOKEN_VALIDATION_CLIENT_SECRET, "Client Secret",
-                        "input", "Client Secret for Token Validation", "", true, true, Collections.emptyList(), false));
+                        "input", "Client Secret for Token Validation", "", true,
+                        true, Collections.emptyList(), false));
         return configurationDtoList;
     }
 
@@ -74,17 +77,34 @@ public class PingFederateConnectorConfiguration implements KeyManagerConnectorCo
 
         List<ConfigurationDto> configurationDtoList = new ArrayList<>();
         configurationDtoList
-                .add(new ConfigurationDto(PingFederateConstants.BYPASS_APPROVAL_PAGES, "Bypass approval Pages",
-                        "select", "Enable to skip authorization approval pages",
+                .add(new ConfigurationDto(PingFederateConstants.BYPASS_APPROVAL_PAGES,
+                        "Bypass Approval Pages", "select",
+                        "Enable to skip authorization approval pages",
                         "false",
-                        false, false, Arrays.asList("false", "true"), false));
+                        false, false,
+                        Arrays.asList("false", "true"), false));
         configurationDtoList
-                .add(new ConfigurationDto(PingFederateConstants.RESTRICT_RESPONSE_TYPES, "Restricted Reponse Types",
-                        "select", "Select Response Types Client can request",
-                        "",
+                .add(new ConfigurationDto(PingFederateConstants.RESTRICT_RESPONSE_TYPES,
+                        "Restricted Response Types", "select",
+                        "Select Response Types Client can request",
+                        "" ,
                         false, false,
                         Arrays.asList("code", "token", "id_token", "code token", "code id_token", "token id_token",
                                 "code token id_token"), true));
+        configurationDtoList
+                .add(new ConfigurationDto(PingFederateConstants.CLIENT_AUTHENTICATION_TYPE,
+                        "Client Authentication Type", "select",
+                        "Select the OAuth Client Authentication Type",
+                        "SECRET",
+                        false, false,
+                        Arrays.asList("NONE", "SECRET", "CLIENT_CERT", "PRIVATE_KEY_JWT"), false));
+        configurationDtoList
+                .add(new ConfigurationDto(PingFederateConstants.RESTRICTED_SCOPES,
+                        "Restricted Scopes", "input",
+                        "Add available scopes that the client can request",
+                        "",
+                        false, false,
+                        Collections.emptyList(), false));
         return configurationDtoList;
     }
 
