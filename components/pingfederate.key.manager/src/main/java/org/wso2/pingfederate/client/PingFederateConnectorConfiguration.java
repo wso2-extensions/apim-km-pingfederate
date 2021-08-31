@@ -97,7 +97,8 @@ public class PingFederateConnectorConfiguration implements KeyManagerConnectorCo
                         "Select the OAuth Client Authentication Type",
                         "SECRET",
                         false, false,
-                        Arrays.asList("NONE", "SECRET", "CLIENT_CERT", "PRIVATE_KEY_JWT"), false));
+                        Arrays.asList("NONE", "SECRET"), false));
+        // TODO: Support for other clientAuthnTypes of  "CLIENT_CERT" and "PRIVATE_KEY_JWT"
         configurationDtoList
                 .add(new ConfigurationDto(PingFederateConstants.RESTRICTED_SCOPES,
                         "Restricted Scopes", "input",
