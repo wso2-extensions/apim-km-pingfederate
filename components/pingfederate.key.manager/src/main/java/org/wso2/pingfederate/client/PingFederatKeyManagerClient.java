@@ -202,7 +202,8 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
                         (List<String>) additionalProperties.get(PingFederateConstants.RESTRICT_RESPONSE_TYPES));
             }
         }
-        if (additionalProperties.containsKey(PingFederateConstants.CLIENT_AUTHENTICATION_TYPE)) {
+        if (additionalProperties.containsKey(PingFederateConstants.CLIENT_AUTHENTICATION_TYPE) &&
+                additionalProperties.get(PingFederateConstants.CLIENT_AUTHENTICATION_TYPE) instanceof String) {
             clientInfo.setClientAuthnType(
                     (String) additionalProperties.get(PingFederateConstants.CLIENT_AUTHENTICATION_TYPE));
         } else {
