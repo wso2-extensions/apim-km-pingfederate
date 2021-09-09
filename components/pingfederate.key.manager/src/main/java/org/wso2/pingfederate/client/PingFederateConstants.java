@@ -28,8 +28,10 @@ public class PingFederateConstants {
     public static final String PASSWORD = "password";
     public static final String TOKEN_VALIDATION_CLIENT_ID = "client_id";
     public static final String TOKEN_VALIDATION_CLIENT_SECRET = "client_secret";
-    public static final String BYPASS_APPROVAL_PAGES = "bypass_approval_pages";
-    public static final String RESTRICT_RESPONSE_TYPES = "restrict_response_types";
+    public static final String BYPASS_APPROVAL_PAGES = "bypassApprovalPage";
+    public static final String RESTRICT_RESPONSE_TYPES = "restrictedResponseTypes";
+    public static final String CLIENT_AUTHENTICATION_TYPE = "clientAuthnType";
+    public static final String RESTRICTED_SCOPES = "restrictedScopes";
     public static final String CONSUMER_KEY_CLAIM = "client_id_name";
     public static final String DEFAULT_SUBJECT_CLAIM = "Username";
     public static final String CLIENT_ID_CLAIM = "client_id";
