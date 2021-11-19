@@ -43,7 +43,6 @@ import org.wso2.carbon.apimgt.impl.kmclient.ApacheFeignHttpClient;
 import org.wso2.carbon.apimgt.impl.kmclient.FormEncoder;
 import org.wso2.carbon.apimgt.impl.kmclient.KMClientErrorDecoder;
 import org.wso2.carbon.apimgt.impl.kmclient.KeyManagerClientException;
-import org.wso2.carbon.apimgt.impl.kmclient.model.AuthClient;
 import org.wso2.carbon.apimgt.impl.kmclient.model.TokenInfo;
 import org.wso2.carbon.apimgt.impl.utils.APIUtil;
 import org.wso2.carbon.user.core.UserCoreConstants;
@@ -55,8 +54,10 @@ import org.wso2.pingfederate.model.IntrospectClient;
 import org.wso2.pingfederate.model.IntrospectInfo;
 import org.wso2.pingfederate.model.PingFederateDCRClient;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -291,8 +292,9 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
         TokenInfo tokenResponse;
 
         try {
-            tokenResponse = authClient.generate(accessTokenRequest.getClientId(),
-                    accessTokenRequest.getClientSecret(), APIConstants.GRANT_TYPE_VALUE, scopes);
+            String credentials = accessTokenRequest.getClientId() + ':' + accessTokenRequest.getClientSecret();
+            String authToken = Base64.getEncoder().encodeToString(credentials.getBytes(StandardCharsets.UTF_8));
+            tokenResponse = authClient.generate(authToken, APIConstants.GRANT_TYPE_VALUE, scopes);
         } catch (KeyManagerClientException e) {
             throw new APIManagementException("Error occurred while calling token endpoint!", e);
         }
