@@ -374,10 +374,10 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
     public void loadConfiguration(KeyManagerConfiguration keyManagerConfiguration) throws APIManagementException {
 
         this.configuration = keyManagerConfiguration;
-        String clientRegistrationEndpoint =
-                (String) configuration.getParameter(APIConstants.KeyManager.CLIENT_REGISTRATION_ENDPOINT);
-        String introspectionEndpoint =
-                (String) configuration.getParameter(APIConstants.KeyManager.INTROSPECTION_ENDPOINT);
+        String clientRegistrationEndpoint = (String) configuration
+                .getParameter(APIConstants.KeyManager.CLIENT_REGISTRATION_ENDPOINT);
+        String introspectionEndpoint = (String) configuration
+                .getParameter(APIConstants.KeyManager.INTROSPECTION_ENDPOINT);
         String username = (String) configuration.getParameter(PingFederateConstants.USERNAME);
         String password = (String) configuration.getParameter(PingFederateConstants.PASSWORD);
         String clientId = (String) configuration.getParameter(PingFederateConstants.TOKEN_VALIDATION_CLIENT_ID);
@@ -385,21 +385,21 @@ public class PingFederatKeyManagerClient extends AbstractKeyManager {
         String tokenEndpoint = (String) configuration.getParameter(APIConstants.KeyManager.TOKEN_ENDPOINT);
         if (StringUtils.isNotEmpty(clientRegistrationEndpoint) && StringUtils.isNotEmpty(username) &&
                 StringUtils.isNotEmpty(password)) {
-            pingFederateDCRClient =
-                    Feign.builder().client(new ApacheFeignHttpClient(APIUtil.getHttpClient(clientRegistrationEndpoint)))
-                            .encoder(new GsonEncoder()).decoder(new GsonDecoder())
-                            .logger(new Slf4jLogger())
-                            .requestInterceptor(new BasicAuthRequestInterceptor(username, password))
-                            .target(PingFederateDCRClient.class, clientRegistrationEndpoint);
+            pingFederateDCRClient = Feign.builder()
+                    .client(new ApacheFeignHttpClient(APIUtil.getHttpClient(clientRegistrationEndpoint)))
+                    .encoder(new GsonEncoder()).decoder(new GsonDecoder())
+                    .logger(new Slf4jLogger())
+                    .requestInterceptor(new BasicAuthRequestInterceptor(username, password))
+                    .target(PingFederateDCRClient.class, clientRegistrationEndpoint);
         }
         if (StringUtils.isNotEmpty(introspectionEndpoint) && StringUtils.isNotEmpty(clientId) &&
                 StringUtils.isNotEmpty(clientSecret)) {
-            introspectionClient =
-                    Feign.builder().client(new ApacheFeignHttpClient(APIUtil.getHttpClient(introspectionEndpoint)))
-                            .encoder(new FormEncoder()).decoder(new GsonDecoder())
-                            .logger(new Slf4jLogger())
-                            .requestInterceptor(new BasicAuthRequestInterceptor(clientId, clientSecret))
-                            .target(IntrospectClient.class, introspectionEndpoint);
+            introspectionClient = Feign.builder()
+                    .client(new ApacheFeignHttpClient(APIUtil.getHttpClient(introspectionEndpoint)))
+                    .encoder(new FormEncoder()).decoder(new GsonDecoder())
+                    .logger(new Slf4jLogger())
+                    .requestInterceptor(new BasicAuthRequestInterceptor(clientId, clientSecret))
+                    .target(IntrospectClient.class, introspectionEndpoint);
         }
         if (StringUtils.isNotEmpty(tokenEndpoint)) {
             authClient = Feign.builder().client(new ApacheFeignHttpClient(APIUtil.getHttpClient(tokenEndpoint)))
