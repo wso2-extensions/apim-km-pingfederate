@@ -247,7 +247,7 @@
         <json.simple.version>1.1</json.simple.version>
         <gson.version>2.1</gson.version>
         <carbon.p2.plugin.version>1.5.3</carbon.p2.plugin.version>
-        <feign.version>11.0</feign.version>
+        <feign.version>13.2.1</feign.version>
         <maven.spotbugsplugin.version>3.1.10</maven.spotbugsplugin.version>
         <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
         <version.checkstyle>8.34</version.checkstyle>
