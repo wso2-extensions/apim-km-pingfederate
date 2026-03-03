@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ~  Copyright (c) 2026, WSO2 LLC. (http://www.wso2.org).
+ ~
+ ~  WSO2 LLC. licenses this file to you under the Apache License,
+ ~  Version 2.0 (the "License"); you may not use this file except
+ ~  in compliance with the License.
+ ~  You may obtain a copy of the License at
+ ~
+ ~    http://www.apache.org/licenses/LICENSE-2.0
+ ~
+ ~  Unless required by applicable law or agreed to in writing,
+ ~  software distributed under the License is distributed on an
+ ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ ~  KIND, either express or implied.  See the License for the
+ ~  specific language governing permissions and limitations
+ ~  under the License.
+-->
+<FindBugsFilter>
+    <!-- Suppress EI_EXPOSE_REP for PingFederatKeyManagerClient.getKeyManagerConfiguration() -->
+    <Match>
+        <Class name="org.wso2.pingfederate.client.PingFederatKeyManagerClient"/>
+        <Method name="getKeyManagerConfiguration"/>
+        <Bug pattern="EI_EXPOSE_REP"/>
+    </Match>
+
+    <!-- Suppress EI_EXPOSE_REP2 for PingFederatKeyManagerClient.loadConfiguration() -->
+    <Match>
+        <Class name="org.wso2.pingfederate.client.PingFederatKeyManagerClient"/>
+        <Method name="loadConfiguration"/>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+
+    <!-- Suppress EI_EXPOSE_REP for ClientInfoList.getClients() -->
+    <Match>
+        <Class name="org.wso2.pingfederate.model.ClientInfoList"/>
+        <Method name="getClients"/>
+        <Bug pattern="EI_EXPOSE_REP"/>
+    </Match>
+
+    <!-- Suppress EI_EXPOSE_REP2 for ClientInfoList.setClients() -->
+    <Match>
+        <Class name="org.wso2.pingfederate.model.ClientInfoList"/>
+        <Method name="setClients"/>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+</FindBugsFilter>
